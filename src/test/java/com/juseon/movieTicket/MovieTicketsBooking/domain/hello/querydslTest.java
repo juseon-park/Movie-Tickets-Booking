@@ -1,7 +1,5 @@
 package com.juseon.movieTicket.MovieTicketsBooking.domain.hello;
 
-import com.juseon.movieTicket.MovieTicketsBooking.domain.hello.HelloDomain;
-import com.juseon.movieTicket.MovieTicketsBooking.domain.hello.QHelloDomain;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -9,6 +7,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @Transactional
 @SpringBootTest
@@ -32,6 +32,9 @@ public class querydslTest {
         JPAQueryFactory queryFactory = new JPAQueryFactory(entityManager);
         QHelloDomain qHelloDomain = new QHelloDomain("hello");
         HelloDomain found = queryFactory.selectFrom(qHelloDomain).fetchOne();
+
+        //then
+        assertEquals(found,helloDomain);
 
     }
 }
